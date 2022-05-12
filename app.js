@@ -2,6 +2,7 @@ var text_container = document.getElementById('todo-text');
 var task_container = document.getElementById('todo_list');
 var isDisplayPending =false;
 
+
 //getting task array from local storage
 let tasks =JSON.parse((localStorage.getItem('tasks-list')));
 
