@@ -1,0 +1,20 @@
+#enter{
+    cursor: pointer;
+}
+
+.singleTask:hover li{
+    box-shadow: -5px 0px 18px #4891c2 inset;  
+}
+
+.del-icon{
+    color:rgb(206, 123, 155);
+}
+
+.complete{
+    color:rgb(255, 255, 255);
+    background-color: rgb(7, 43, 15);
+
+}
+.icon:hover{
+ transform:scale(1.1);
+}
