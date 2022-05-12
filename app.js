@@ -1,9 +1,11 @@
 var text_container = document.getElementById('todo-text');
 var task_container = document.getElementById('todo_list');
 //text_container.addEventListener('')
+var isDisplayPending =false;
 
 //getting task array from local storage
 let tasks =JSON.parse((localStorage.getItem('tasks-list')));
+
 
 //delete task
 function deleteTask(e){
@@ -19,6 +21,8 @@ displayTask();
 function updateStatus(e){
     console.log(e);
     const update_id = e.parentNode.id;
+    e.parentNode.parentNode.style.textDecoration = "line-through";
+
     e.classList.add('complete');
     tasks[update_id].status="completed";
     localStorage.setItem('tasks-list',JSON.stringify(tasks));
@@ -31,8 +35,14 @@ function displayTask(){
     if(tasks){
         console.log(tasks)
         let li= "";
-  
-    tasks.forEach((task,id)=>{
+    var display_task=[];
+    if(isDisplayPending){
+        display_task = tasks.filter(task=>task.status==='pending')
+    }
+    else{
+    display_task = tasks;
+    }
+    display_task.forEach((task,id)=>{
         console.log(id,task);
         //const div = document.createElement("div");
         //div.classList.add("singleTask"); 
@@ -109,3 +119,24 @@ document.getElementById('input-form').addEventListener('submit',(e)=>{
    
 
 })
+const items = document.getElementsByClassName('catagory_button');
+const bg_pending = document.getElementById('pending');
+const bg_all =  document.getElementById('all');
+for(const item of items){
+    item.addEventListener('click',(e)=>{
+        console.log('button clicked',e.target.id);
+        
+        if(e.target.id==="all"){
+        isDisplayPending = false;
+        bg_all.style.backgroundColor= "aquamarine";
+        bg_pending.style.backgroundColor="rgb(239, 239, 239)"
+        }
+        else{
+            isDisplayPending=true;
+            bg_pending.style.backgroundColor= "aquamarine";
+            bg_all.style.backgroundColor="rgb(239, 239, 239)"
+        }
+        displayTask();
+
+    })
+}

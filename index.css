@@ -1,7 +1,12 @@
 #enter{
     cursor: pointer;
 }
-
+.catagory_button{
+    border: none;
+}
+#all{
+    background-color: aquamarine;
+}
 .singleTask:hover li{
     box-shadow: -5px 0px 18px #4891c2 inset;  
 }
